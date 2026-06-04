@@ -35,7 +35,7 @@ app.add_middleware(
 processor = AutoImageProcessor.from_pretrained("Sisigoks/FloraSense")
 model = AutoModelForImageClassification.from_pretrained("Sisigoks/FloraSense")
 
-@app.post("/identificar")
+@app.post("/identify")
 async def identify_plant(file: UploadFile = File(...)):
     if not file.content_type.startswith("image/"):
         raise HTTPException(status_code=400, detail="Arquivo inválido. Por favor, envie uma imagem.")
@@ -65,8 +65,8 @@ async def identify_plant(file: UploadFile = File(...)):
             name_formatted = word_formatter(name)
             
             predictions.append({
-                "especie": name_formatted,
-                "confianca": confidence
+                "specie": name_formatted,
+                "confidence": confidence
             })
 
         return {

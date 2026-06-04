@@ -1,3 +1,18 @@
+#Python
 venv/
 __pycache__/
 *.pyc
+
+# variaveis de Ambiente
+.env
+.env.*
+!.env.example
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# VS Code
+.vscode/
+*.code-workspace
