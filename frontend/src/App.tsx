@@ -6,13 +6,13 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Rota padrão redireciona para o login */}
+        {/* Rota login */}
         <Route path="/" element={<Navigate to="/login" replace />} />
         
         {/* Rota de Autenticação */}
         <Route path="/login" element={<Login />} />
         
-        {/* Rota Principal do Sistema */}
+        {/* Rota Principal */}
         <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </BrowserRouter>

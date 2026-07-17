@@ -9,7 +9,6 @@ export default function Dashboard() {
   const [activeTab, setActiveTab] = useState<Tab>('painel');
   const navigate = useNavigate();
 
-  // Estados para o Upload (Painel)
   const [file, setFile] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -17,11 +16,9 @@ export default function Dashboard() {
   const [error, setError] = useState('');
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  // Estados para o Histórico
   const [history, setHistory] = useState<any[]>([]);
   const [isLoadingHistory, setIsLoadingHistory] = useState(false);
   
-  // NOVO: Estado para controlar o Modal de detalhes da imagem
   const [selectedHistoryItem, setSelectedHistoryItem] = useState<any>(null);
 
   useEffect(() => {
@@ -318,7 +315,7 @@ export default function Dashboard() {
               />
             </div>
 
-            {/* Informações detalhadas embaixo */}
+            {/* Informações detalhadas */}
             <div className="p-8 bg-white">
               <div className="flex items-center text-[#3B8E47] mb-6">
                 <Leaf size={28} className="mr-2" />

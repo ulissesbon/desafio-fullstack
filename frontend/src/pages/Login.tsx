@@ -46,7 +46,6 @@ export default function Login() {
       setPassword('');
     } catch (err: any) {
       console.error(err);
-      // Se o backend retornar 400 (Bad Request), provavelmente o usuário já existe
       if (err.response && err.response.status === 400) {
         setError('Este usuário já existe. Tente outro nome.');
       } else {
@@ -66,7 +65,7 @@ export default function Login() {
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
       
-      {/* NOVO CABEÇALHO COM A SUA IMAGEM */}
+      { }
       <header className="w-full bg-white flex justify-center items-center py-4 border-b-2 border-gray-100 shadow-sm">
         <img 
           src="/header-lapisco.png" 
@@ -79,7 +78,7 @@ export default function Login() {
       <main className="flex-1 flex items-center justify-center p-4">
         <div className="flex w-full max-w-4xl bg-gray-100 shadow-2xl rounded-lg overflow-hidden min-h-[500px] border border-gray-200">
           
-          {/* Lado Esquerdo - Painel Verde Fixo */}
+          {/* Lado Esquerdo Painel */}
           <div className="w-1/2 bg-[#3B8E47] text-white flex flex-col justify-center items-center p-10 text-center">
             <h2 className="text-4xl font-serif font-bold mb-2">Bem Vindo!</h2>
             <p className="mb-8 text-sm px-4 font-serif">
@@ -101,7 +100,7 @@ export default function Login() {
             </button>
           </div>
 
-          {/* Lado Direito - Dinâmico */}
+          {/* Lado Direito Painel */}
           <div className="w-1/2 flex flex-col justify-center items-center p-12 bg-[#F0F2F5]">
             
             {view === 'initial' && (
