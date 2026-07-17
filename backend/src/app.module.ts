@@ -1,20 +1,23 @@
-import { join } from 'path';
 import { Module } from '@nestjs/common';
-import { HttpModule } from '@nestjs/axios';
-import { AppService } from './app.service';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { Plant } from './entities/plants.entity';
 import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { HttpModule } from '@nestjs/axios';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { ServeStaticModule } from '@nestjs/serve-static';
+import { JwtModule } from '@nestjs/jwt';
+import { PassportModule } from '@nestjs/passport';
+import { join } from 'path';
+import { Plant } from './entities/plant.entity';
+import { User } from './entities/user.entity';
+import { JwtStrategy } from './jwt.strategy';
 
 @Module({
-  imports: [HttpModule,
-
-    ServeStaticModule.forRoot({ 
+  imports: [
+    HttpModule,
+    ServeStaticModule.forRoot({
       rootPath: join(process.cwd(), 'uploads'),
       serveRoot: '/uploads',
     }),
-
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
@@ -22,13 +25,17 @@ import { ServeStaticModule } from '@nestjs/serve-static';
       username: 'admin',
       password: 'admin123',
       database: 'plants_db',
-      entities: [Plant],
-      synchronize: true,
+      entities: [Plant, User],
+      synchronize: true, 
     }),
-
-    TypeOrmModule.forFeature([Plant]),
+    TypeOrmModule.forFeature([Plant, User]),
+    PassportModule,
+    JwtModule.register({
+      secret: 'MY_SUPER_SECRET_KEY',
+      signOptions: { expiresIn: '2h' },
+    }),
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, JwtStrategy],
 })
 export class AppModule {}
